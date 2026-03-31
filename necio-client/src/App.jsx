@@ -1,18 +1,39 @@
-import React from 'react';
-import './App.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
+// HomePage Structure
+import Layout from './assets/components/Layout';
+import ArticlePage from './assets/pages/ArticlePage';
+import HomePage from './assets/pages/HomePage';
+import AboutPage from './assets/pages/AboutPage';
+
+const routes = [
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
+        path: '',
+        element: <HomePage />,
+      },
+      {
+        path: 'about',
+        element: <AboutPage />,
+      },
+      {
+        path: 'articles',
+        element: <ArticlePage />,
+      },
+    ],
+  },
+];
+
+const router = createBrowserRouter(routes);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Welcome to My React App!</h1>
-        <p>
-          Name: Rainiel Necio<br />
-          Email: rainnecio04@gmail.com<br />
-          Other Personal Info: <a href="https://github.com/rainielryan/necio-webprog" target="_blank" rel="noopener noreferrer">Github Profile</a>
-        </p>
-      </header>
-    </div>
+    <>
+      <RouterProvider router={router} />
+    </>
   );
 }
 
