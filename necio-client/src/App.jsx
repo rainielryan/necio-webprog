@@ -1,31 +1,36 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import './App.css';
+import Layout from './components/Layout';
+import AboutPage from './pages/AboutPage';
+import ArticleListPage from './pages/ArticleListPage';
+import ArticlePage from './pages/ArticlePage';
+import HomePage from './pages/HomePage';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import NotFoundPage from './pages/NotFoundPage';
 
-// HomePage Structure
-import Layout from './assets/components/Layout';
-import ArticlePage from './assets/pages/ArticlePage';
-import HomePage from './assets/pages/HomePage';
-import AboutPage from './assets/pages/AboutPage';
-
-const routes = [
-  {
-    path: '/',
-    element: <Layout />,
-    children: [
-      {
-        path: '',
-        element: <HomePage />,
-      },
-      {
-        path: 'about',
-        element: <AboutPage />,
-      },
-      {
-        path: 'articles',
-        element: <ArticlePage />,
-      },
-    ],
-  },
-];
+const routes = [{
+  path: '/',
+  element: <Layout />,
+  // Error element
+  errorElement: <NotFoundPage />,
+  children: [{
+      // Path declaration
+      index: true,
+      element: <HomePage />
+    },
+    {
+      path: 'about',
+      element: <AboutPage />
+    },
+    {
+      path: 'articles',
+      element: <ArticleListPage />
+    },
+    {
+      path: 'articles/:name', // -->articles/learn-react
+      element: <ArticlePage />
+    }
+  ]
+}]
 
 const router = createBrowserRouter(routes);
 
