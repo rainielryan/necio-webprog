@@ -1,4 +1,4 @@
-import Button from '../components/Button';
+import Button from '../../components/Button';
 
 const HomePage = () => {
   return (
@@ -23,11 +23,12 @@ const HomePage = () => {
           </div>
 
           <div className="rounded-3xl border-2 border-dashed border-zinc-300 bg-zinc-100 p-6">
-            <div className="flex min-h-65 items-center justify-center rounded-[1.25rem] bg-zinc-200 overflow-hidden">
+            <div className="h-90 w-full rounded-[1.25rem] overflow-hidden">
               <img
                 src="/Rain Picture.jpg"
                 alt="Rainiel Necio"
-                className="h-full w-full object-cover object-top"
+                className="h-full w-full object-cover"
+                style={{ objectPosition: '50% 40%' }}
               />
             </div>
           </div>
