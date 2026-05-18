@@ -1,0 +1,2 @@
+/* Re-exports global styles from src/index.css (handout: assets/styles/index.css) */
+@import "../../index.css";

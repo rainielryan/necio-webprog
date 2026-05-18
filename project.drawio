@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-05-18T00:00:00.000Z" version="22.0.0" type="device">
+  <diagram id="project-overview" name="Page-1">
+    <mxGraphModel dx="800" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#f4f4f5;strokeColor=#18181b;" value="Place app architecture diagrams here (optional)." vertex="1">
+          <mxGeometry width="520" height="80" x="80" y="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
