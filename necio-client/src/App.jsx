@@ -7,6 +7,10 @@ import ArticleListPage from './pages/LandingPages/ArticleListPage';
 import ArticlePage from './pages/LandingPages/ArticlePage';
 import SignInPage from './pages/AuthPages/SignInPage';
 import SignUpPage from './pages/AuthPages/SignUpPage';
+import DashLayout from './layouts/DashLayout';
+import DashboardPage from './pages/DashboardPages/DashboardPage';
+import ReportsPage from './pages/DashboardPages/ReportsPage';
+import UsersPage from './pages/DashboardPages/UsersPage';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import NotFoundPage from './pages/NotFoundPage';
 
@@ -17,47 +21,61 @@ const routes = [
     errorElement: <NotFoundPage />,
     children: [
       {
-        index: true,
-        element: <HomePage />
+        path: '',
+        element: <HomePage />,
       },
       {
         path: 'about',
-        element: <AboutPage />
+        element: <AboutPage />,
       },
       {
         path: 'articles',
-        element: <ArticleListPage />
+        element: <ArticleListPage />,
       },
       {
         path: 'articles/:name',
-        element: <ArticlePage />
-      }
-    ]
+        element: <ArticlePage />,
+      },
+    ],
   },
   {
-    path: '/auth',
+    path: "auth/",
     element: <AuthLayout />,
+    errorElement: <NotFoundPage />,
     children: [
       {
-        path: 'signin',
-        element: <SignInPage />
+        path: "signin",
+        element: <SignInPage />,
       },
       {
-        path: 'signup',
-        element: <SignUpPage />
+        path: "signup",
+        element: <SignUpPage />,
       }
-    ]
-  }
+    ],
+  },
+  {
+    path: "dashboard/",
+    element: <DashLayout />,
+    errorElement: <NotFoundPage />,
+    children: [
+      {
+        path: "",
+        element: <DashboardPage />,
+      },
+      {
+        path: "reports",
+        element: <ReportsPage />,
+      },
+      {
+        path: "users",
+        element: <UsersPage />,
+      }
+    ],
+  },
 ];
 
 const router = createBrowserRouter(routes);
 
-function App() {
-  return (
-    <>
-      <RouterProvider router={router} />
-    </>
-  );
+export default function App() {
+  return <RouterProvider router={router} />;
 }
-
-export default App;
