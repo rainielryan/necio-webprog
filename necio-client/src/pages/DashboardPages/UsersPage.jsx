@@ -1,38 +1,24 @@
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { DataGrid } from '@mui/x-data-grid';
+import { portfolioNavy } from '../../theme/dashboardTheme';
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 90 },
-  {
-    field: 'firstName',
-    headerName: 'First name',
-    width: 150,
-    editable: true,
-  },
-  {
-    field: 'lastName',
-    headerName: 'Last name',
-    width: 150,
-    editable: true,
-  },
-  {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 110,
-    editable: true,
-  },
+  { field: 'id', headerName: 'ID', width: 70 },
+  { field: 'firstName', headerName: 'First name', width: 150, editable: true },
+  { field: 'lastName', headerName: 'Last name', width: 150, editable: true },
+  { field: 'age', headerName: 'Age', type: 'number', width: 90, editable: true },
   {
     field: 'fullName',
     headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
     sortable: false,
-    width: 160,
-    valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
+    flex: 1,
+    minWidth: 140,
+    valueGetter: (value, row) =>
+      `${row.firstName || ''} ${row.lastName || ''}`.trim(),
   },
 ];
 
@@ -51,35 +37,71 @@ const rows = [
 export default function UsersPage() {
   return (
     <Box>
-      <Stack spacing={0.5} sx={{ mb: 2 }}>
-        <Typography variant="h4" component="h1" sx={{ fontWeight: 600 }}>
-          Users
+      <Stack spacing={0.5} sx={{ mb: 4 }}>
+        <Typography variant="subtitle2">Portfolio / Users</Typography>
+        <Typography variant="h4" component="h1">
+          User directory
         </Typography>
-        <Typography variant="body1" color="text.secondary">
-          Same sample directory as on the dashboard; manage details here in a dedicated view.
+        <Typography variant="body2" color="text.secondary" sx={{ maxWidth: '38rem', lineHeight: 1.75, mt: 0.5 }}>
+          Sample profiles shown in a fully styled data grid—click any editable cell to update values inline.
         </Typography>
       </Stack>
 
-      <Card elevation={1}>
-        <CardContent sx={{ px: { xs: 1, sm: 2 }, pb: 2, '&:last-child': { pb: 2 } }}>
-          <Box sx={{ height: 480, width: '100%' }}>
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              experimentalFeatures={{ newEditingApi: true }}
-              checkboxSelection
-              disableRowSelectionOnClick
-              pageSizeOptions={[5, 10, rows.length]}
-              initialState={{
-                pagination: { paginationModel: { pageSize: 10 } },
-              }}
+      <Card sx={{ overflow: 'hidden' }}>
+        <Box
+          sx={{
+            px: 2.5,
+            py: 2,
+            borderBottom: '2px solid',
+            borderColor: 'text.primary',
+            bgcolor: 'background.default',
+          }}
+        >
+          <Stack direction="row" alignItems="center" spacing={1.5} flexWrap="wrap">
+            <Typography variant="h6" sx={{ flex: 1 }}>
+              All users
+            </Typography>
+            <Chip
+              label={`${rows.length} profiles`}
+              size="small"
               sx={{
-                border: 'none',
-                '& .MuiDataGrid-columnHeaders': { borderRadius: 1 },
+                fontWeight: 700,
+                fontSize: '0.7rem',
+                letterSpacing: '0.08em',
+                bgcolor: portfolioNavy,
+                color: '#fff',
+                height: 24,
               }}
             />
-          </Box>
-        </CardContent>
+            <Chip
+              label="Editable"
+              size="small"
+              variant="outlined"
+              sx={{
+                fontWeight: 600,
+                fontSize: '0.7rem',
+                letterSpacing: '0.08em',
+                borderColor: 'text.primary',
+                height: 24,
+              }}
+            />
+          </Stack>
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+            First name, last name, and age columns support inline editing
+          </Typography>
+        </Box>
+        <Box sx={{ height: 520 }}>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            experimentalFeatures={{ newEditingApi: true }}
+            checkboxSelection
+            disableRowSelectionOnClick
+            pageSizeOptions={[5, 10, rows.length]}
+            initialState={{ pagination: { paginationModel: { pageSize: 10 } } }}
+            sx={{ border: 'none', borderRadius: 0 }}
+          />
+        </Box>
       </Card>
     </Box>
   );
